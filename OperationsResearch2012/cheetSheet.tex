@@ -1433,7 +1433,7 @@ p_i \geq 0, i=\overline{1,m}
 \label{eq:mgtolp2p2}
 \end{equation}
 
-Оскільки мета 2-го гравця максимально зменшити виграш першого, то задача зводиться до задачі лінійного програмування:
+Оскільки мета 2-го гравця максиgit pu	мально зменшити виграш першого, то задача зводиться до задачі лінійного програмування:
 \begin{equation}
 \begin{array}{l}
 \displaystyle \sum_{j=1}^m q_j = \to \max, q_j \geq 0, j=\overline{1,n}\\
@@ -1504,8 +1504,131 @@ y_j \geq 0, i=\overline{1,m+n};
 
 \chapter{Поняття Біматричної гри. Умови рівноваги для біматричної гри.}
 
+\emph{Біматрична гра} - це гра двох гравців з ненульовою сумою. Виграш кожного з гравців задається за допомогою матриці. Нехай перший гравець має $m$ стратегій, а другий - $n$. Виграші першого і другого гравця задаються відповідно матрицями A, B:\\
+$A =$
+\begin{tabular}{|c|c|c|}
+\hline
+$a_{1 1}$&$\dots$&$a_{1 n}$\\
+\hline
+$\vdots$&&$\vdots$\\
+\hline
+$a_{m 1}$&$\dots$&$a_{m n}$\\
+\hline
+\end{tabular}\\
+$B =$
+\begin{tabular}{|c|c|c|}
+\hline
+$b_{1 1}$&$\dots$&$b_{1 n}$\\
+\hline
+$\vdots$&&$\vdots$\\
+\hline
+$b_{m 1}$&$\dots$&$b_{m n}$\\
+\hline
+\end{tabular}
+
+Будемо вважати мішаною стратегією першого гравця:
+\[\begin{array}{l}
+x = (x_1, \dots, x_m)\\
+\sum_{i=1}^m x_i = 1, x_i \geq 0, i = \overline{1,m}
+\end{array}\]
+
+Другого:
+\[\begin{array}{l}
+y = (y_1, \dots, y_n)\\
+\sum_{j=1}^n y_j = 1, y_j \geq 0, j = \overline{1,n}
+\end{array}\]
+
+Тоді середні виграші обох гравців будуть:\\
+Першого: $\displaystyle H_1=H(A,y,x)=\sum_{i=1}^m \sum_{j=1}^n a_{ij} x_i y_j$\\
+Другого: $\displaystyle H_2=H(B,y,x)=\sum_{i=1}^m \sum_{j=1}^n b_{ij} x_i y_j$
+
+\emph{Ситуацією рівноваги} для біматричної гри називається така пара $(x,y)$ мішаних стратегій Першого і Другого гравця відповідно, яка задовольняє такі умови:
+\begin{equation} \sum_{j=1}^n a_{ij} y_j \leq H_1, i=\overline{1,m} \label{eq:bimatrbalance1}\end{equation}
+\begin{equation} \sum_{i=1}^m b_{ij} x_i \leq H_2, j=\overline{1,n} \label{eq:bimatrbalance2}\end{equation}
+
+Для відшукання ситуації рівноваги, потрібно роз’язати нерівності (\ref{eq:bimatrbalance1}-\ref{eq:bimatrbalance2}), за умов:
+\[ \sum_{i=1}^m x_i = 1, x_i \geq 0, i = \overline{1,m}, \]
+\[ \sum_{j=1}^n y_j = 1, y_j \geq 0, j = \overline{1,n}. \]
+
 \clearpage
 
 \chapter{Розв'язування біматричних ігор.}
+
+Розглянемо випадок коли Перший і Другий гравець мають по дві стратегії. Тоді:\\
+$A =$
+\begin{tabular}{|c|c|}
+\hline
+$a_{1 1}$&$a_{1 2}$\\
+\hline
+$a_{2 1}$&$a_{2 2}$\\
+\hline
+\end{tabular},
+$B =$
+\begin{tabular}{|c|c|}
+\hline
+$b_{1 1}$&$b_{1 2}$\\
+\hline
+$b_{2 1}$&$b_{2 2}$\\
+\hline
+\end{tabular}
+
+Мішані стратегії: Першого - $(x,1-x)$, Другого - $(y,1-y)$.
+
+Визначимо (\ref{eq:bimatrbalance1}) і (\ref{eq:bimatrbalance2}):\\
+\[\begin{array}{c}
+H_1 = a_{11}xy + a_{12}x(1-y) + a_{21}(1-x)y + a_{22}(1-x)(1-y) =\\
+= (a_{11}-a_{12}-a_{21}+a_{22})xy + (a_{12}-a_{22})x + (a_{21}-a_{22})y + a_{22}
+\end{array}\]
+\[H_2 = (b_{11}-b_{12}-b_{21}+b_{22})xy + (b_{12}-b_{22})x + (b_{21}-b_{22})y + b_{22} \]
+
+Тоді із (\ref{eq:bimatrbalance1}) отримуємо:\\
+$ i=1: a_{11}y+a_{12}(1-y) \leq (a_{11}-a_{12}-a_{21}+a_{22})xy + (a_{12}-a_{22})x + (a_{21}-a_{22})y + a_{22} $\\
+$(a_{11}-a_{12}-a_{21}+a_{22})(1-x)y - (a_{22}-a_{12})(1-x) \leq 0$\\
+Позначимо:\\
+$a_1 = a_{11}-a_{12}-a_{21}+a_{22}$\\
+$a_2 = a_{22}-a_{12}$\\
+$a_1(1-x)y - a_2(1-x) \leq 0$\\
+Аналогічно при $i=2$ отримаємо: $a_1xy - a_2x) \geq 0$.
+
+Таким чином для відшукання ситуації рівноваги потрібно розв’язати:
+\begin{equation} a_1(1-x)y - a_2(1-x) \leq 0 \label{eq:bimatrbalancesolving1} \end{equation}
+\begin{equation} a_1xy - a_2x) \geq 0 \label{eq:bimatrbalancesolving2} \end{equation}
+з умовами: $x,y \in [0,1]$.
+
+Для цього розглянемо випадки:
+\begin{slim_enumerate}
+  \item $x=0$: (\ref{eq:bimatrbalancesolving2}) виконується $\forall y$, а з (\ref{eq:bimatrbalancesolving1}) $\Rightarrow a_1 y - a_2 \leq 0$
+  \item $x=1$: (\ref{eq:bimatrbalancesolving1}) виконується $\forall y$, а з (\ref{eq:bimatrbalancesolving2}) $\Rightarrow a_1 y - a_2 \geq 0$
+  \item $x \in (0,1)$: Поділивши (\ref{eq:bimatrbalancesolving1}) на $(1-x)>0$ отримаємо $a_1 y - a_2 \leq 0$, а поділивши (\ref{eq:bimatrbalancesolving2}) на на $x>0$ - $a_1 y - a_2 \geq 0$.
+
+Звідси, $a_1 y - a_2 = 0$
+\end{slim_enumerate}
+
+Таким чином, множина $М$ сприятливих розв’язків для Першого складається із ситуацій вигляду:
+\begin{slim_itemize}
+  \item $a_1=a_2=0: x \in [0,1], y \in [0,1]$
+  \item $a_1=0$,
+  \begin{slim_enumerate}
+    \item $a_2>0: x=0, y \in [0,1]$
+    \item $a_2<0: x=1, y \in [0,1]$
+  \end{slim_enumerate}
+    \item $a_1>0:$
+    \begin{slim_itemize}
+      \item $x=0, y \leq \alpha$
+      \item $x \in (0,1), y=\alpha$
+      \item $x=1, y \geq \alpha$
+    \end{slim_itemize}
+    \item $a_1<0:$
+    \begin{slim_itemize}
+      \item $x=0, y \geq \alpha$
+      \item $x \in (0,1), y=\alpha$
+      \item $x=1, y \leq \alpha$
+    \end{slim_itemize}
+\end{slim_itemize}
+де $\displaystyle \alpha = \frac{a_2}{a_1}$.
+
+Аналогічно отримуємо множину $N$ сприятливих розв’язків для Другого гравця.
+
+Розвязком гри є перетин $M \cap N$ тобто ті значення $x,y$ які є спільними для двох множин.
 
 \end{document}
